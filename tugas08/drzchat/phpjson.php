@@ -1,5 +1,5 @@
 <?php
-$con = new PDO("mysql:dbname=simple_chat;host=localhost", "root", "");
+$con = new PDO("mysql:dbname=phbweb2_simple_chat;host=localhost", "root", "");
 
 $json = '{"message": {';
 $query = $con->query("select * from message");

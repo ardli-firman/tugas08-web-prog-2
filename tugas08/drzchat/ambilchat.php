@@ -1,5 +1,5 @@
 <?php
-date_default_timezone_set("Asia/Jakarta");
+
 $con = new PDO("mysql:dbname=simple_chat;host=localhost", "root", "");
 
 if (isset($_GET['nama'])) {
@@ -10,7 +10,8 @@ if (isset($_GET['pesan'])) {
     $pesan = $_GET['pesan'];
 }
 
-$waktu = date("H:m");
+date_default_timezone_set("Asia/Jakarta");
+$waktu = date("H:i");
 
 if (isset($_GET['akhir'])) {
     @$akhir = $_GET['akhir'];
@@ -30,7 +31,7 @@ if (@$akhir == 0) {
         "waktu": "' . $waktu . '"
         }]';
 
-    $masuk = $con->query("insert into drzchat values(null, '$nama', '$nama bergabung dalam chat', '$waktu')");
+    $masuk = $con->query("insert into drzchat values(null, '" . @$nama . "', '" . @$nama . "' bergabung dalam chat', '$waktu')");
 } else {
     if (isset($pesan)) {
         $masuk = $con->query("insert into drzchat values(null, '$nama','$pesan','$waktu')");
@@ -50,5 +51,5 @@ if (@$akhir == 0) {
     $json .= ']';
 }
 
-$json .= '}}';
+$json .= "}}";
 echo $json;
